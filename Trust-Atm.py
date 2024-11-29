@@ -227,47 +227,7 @@ def open_login_page():
             withdraw_button=tk.Button(withdraw_window, text="WITHDRAW", command=lambda:process_withdraw())
             withdraw_button.pack(pady=10)
             
-        def pin_check(name):
-            def process_pin():
-                try:
-                                 
-                    connection = pymysql.connect(
-                        host='localhost',
-                        user='root',
-                        password='1234',
-                        database='trust_atm_db'
-                    )
-                    
-                    cursor = connection.cursor()
-                    pin = float(pin_entry.get())
-                    query="SELECT pin from users WHERE name=%s"
-                    cursor.execute(query,(name))
-                    result = cursor.fetchone()
-                    
-                    if len(pin) != 4 or not pin.isdigit():
-                        messagebox.showerror("Error", "PIN must be 4 digits!")
-                    else:
-                        cursor.execute("UPDATE users SET pin = %s WHERE name = %s")
-                        connection.commit()
-                        messagebox.showinfo("Success", "PIN changed successfully!")
-                        pin_change_window.destroy()
-
-            
-
-            pin_change_window=tk.Toplevel(dashboard_window)
-            pin_change_window.title("Deposit")
-            pin_change_window.geometry("400x200")
-            pin_change_window.configure(bg='#981c4e')
-
-            pin_label=tk.Label(pin_change_window, text="Enter amount to Withdraw:",font=("orbitron",13),bg="#981c4e",fg="white")
-            pin_label.pack(pady=10)
-                    
-            pin_number_entry = tk.Entry(pin_change_window)
-            pin_number_entry.pack(pady=5)
-
-            withdraw_button=tk.Button(pin_change_window, text="WITHDRAW", command=lambda:process_pin())
-            withdraw_button.pack(pady=10)
-            
+        
                     
                   
     
