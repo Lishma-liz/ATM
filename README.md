@@ -5,8 +5,8 @@ This project is a simple ATM application built using Python's Tkinter library. T
 
 ## Features
 
-- **User Registration**: New users can register by creating a username and PIN.
-- **Login**: Users can log in with their credentials (username and PIN).
+- **User Registration**: New users can register by creating a User Name,Account Number,Phone Number,Email.
+- **Login**: Users can log in with their credentials (PIN).
 - **Deposit**: Allows users to deposit money into their account.
 - **Withdraw**: Enables users to withdraw money from their account.
 - **Account Details**: Displays the current balance and account information.
