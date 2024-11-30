@@ -47,6 +47,7 @@ def open_login_page():
         dashboard_window=tk.Toplevel(root)
         dashboard_window.title('login Confirmation')
         dashboard_window.geometry("500x300")
+        
         dashboard_window.configure(bg='#981c4e')
 
         dashwelcome_label=tk.Label(dashboard_window, text=f"WELCOME {name}",font=('orbitron', 35), bg='#981c4e', fg='white')
@@ -69,6 +70,10 @@ def open_login_page():
         pinchange_button = tk.Button( dashboard_window, text="Pin Change", font=("Orbitron", 18, "bold"),bg="#ffffff", fg="#981c4e", padx=20, pady=10,command=lambda:pin_check(name))
         pinchange_button.pack(pady=10)
 
+        home_button=tk.Button(
+                   dashboard_window,text='HOME',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [dashboard_window.destroy(), home(root)])
+        home_button.pack(pady=10)
+
 
         def show_account_information(name):
             try:
@@ -89,11 +94,19 @@ def open_login_page():
                    account_window.geometry("500x400")
                    account_window.configure(bg='#981c4e')
 
-                   tk.Label(account_window, text="Account Information", font=('orbitron', 20, 'bold'), bg='#981c4e', fg='white').pack(pady=20)
-                   tk.Label(account_window, text=f"Name: {result[1]}", font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=5)
-                   tk.Label(account_window, text=f"Account Number: {result[2]}", font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=5)
-                   tk.Label(account_window, text=f"Contact: {result[3]}", font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=5)
-                   tk.Label(account_window, text=f"Email: {result[4]}", font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=5)
+                   tk.Label(account_window, text="ACCOUNT INFORMATION", font=('orbitron', 28, 'bold'), bg='#981c4e', fg='white').pack(pady=50)
+                   tk.Label(account_window, text=f"Name: {result[1]}", font=('orbitron', 20), bg='#981c4e', fg='white').pack(pady=5)
+                   tk.Label(account_window, text=f"Account Number: {result[2]}", font=('orbitron', 20), bg='#981c4e', fg='white').pack(pady=5)
+                   tk.Label(account_window, text=f"Contact: {result[3]}", font=('orbitron', 20), bg='#981c4e', fg='white').pack(pady=5)
+                   tk.Label(account_window, text=f"Email: {result[4]}", font=('orbitron', 20), bg='#981c4e', fg='white').pack(pady=5)
+
+                   back_button=tk.Button(
+                   account_window,text='HOME',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [account_window.destroy(), home(root)])
+                   back_button.pack(pady=10)
+
+                   #back_button=tk.Button(
+                   #account_window,text='BACK',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [show_account_information.destroy(), open_dashboard(root)])
+                   #back_button.pack(pady=10)
                 else:
                    messagebox.showerror("Error", "No account information found.")
 
@@ -123,8 +136,11 @@ def open_login_page():
                        balance_window.geometry("500x400")
                        balance_window.configure(bg='#981c4e')
 
-                       tk.Label(balance_window, text="Current Balance", font=('orbitron', 20, 'bold'), bg='#981c4e', fg='white').pack(pady=20)
-                       tk.Label(balance_window, text=f"Your current balance is: {result[0]}", font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=5)
+                       tk.Label(balance_window, text="BALANCE", font=('orbitron', 28, 'bold'), bg='#981c4e', fg='white').pack(pady=30)
+                       tk.Label(balance_window, text=f"Your current balance is: {result[0]}", font=('orbitron', 20), bg='#981c4e', fg='white').pack(pady=5)
+                       back_button=tk.Button(
+                           balance_window,text='HOME',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [balance_window.destroy(), home(root)])
+                       back_button.pack(pady=10)
 
                     else:
                         messagebox.showinfo("Balance", f"zero balance")
@@ -165,6 +181,8 @@ def open_login_page():
             deposit_window.geometry("400x200")
             deposit_window.configure(bg='#981c4e')
 
+            tk.Label(deposit_window, text="DEPOSIT", font=('orbitron', 28, 'bold'), bg='#981c4e', fg='white').pack(pady=50)
+
             enddep_label=tk.Label(deposit_window, text="Enter amount to deposit:",font=("orbitron",13),bg="#981c4e",fg="white")
             enddep_label.pack(pady=10)
                     
@@ -173,6 +191,10 @@ def open_login_page():
 
             deposit_button=tk.Button(deposit_window, text="DEPOSIT", command=lambda:process_deposit())
             deposit_button.pack(pady=10)
+
+            back_button=tk.Button(
+                   deposit_window,text='HOME',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [deposit_window.destroy(), home(root)])
+            back_button.pack(pady=10)
 
 
         def show_withdraw(name):
@@ -218,6 +240,8 @@ def open_login_page():
             withdraw_window.geometry("400x200")
             withdraw_window.configure(bg='#981c4e')
 
+            tk.Label(withdraw_window, text="WITHDRAW", font=('orbitron', 28, 'bold'), bg='#981c4e', fg='white').pack(pady=50)
+
             withdraw_label=tk.Label(withdraw_window, text="Enter amount to Withdraw:",font=("orbitron",13),bg="#981c4e",fg="white")
             withdraw_label.pack(pady=10)
                     
@@ -226,6 +250,72 @@ def open_login_page():
 
             withdraw_button=tk.Button(withdraw_window, text="WITHDRAW", command=lambda:process_withdraw())
             withdraw_button.pack(pady=10)
+
+            back_button=tk.Button(
+                   withdraw_window,text='HOME',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [withdraw_window.destroy(), home(root)])
+            back_button.pack(pady=10)
+
+
+
+        def pin_check(name):
+            def process_pin():
+                try:
+                                 
+                    connection = pymysql.connect(
+                        host='localhost',
+                        user='root',
+                        password='1234',
+                        database='trust_atm_db'
+                    )
+                    
+                    cursor = connection.cursor()
+                    pin = pin_number_entry.get()
+                    if not pin.isdigit() or len(pin) != 4:
+                        messagebox.showerror("Error", "PIN must be exactly 4 digits!")
+                        return
+
+            
+                    query = "SELECT pin FROM users WHERE name=%s"
+                    cursor.execute(query, (name,))
+                    result = cursor.fetchone()
+
+                    if result is None:
+                        messagebox.showerror("Error", "User not found!")
+                        return
+
+           
+                    update_query = "UPDATE users SET pin = %s WHERE name = %s"
+                    cursor.execute(update_query, (pin, name))
+                    connection.commit()
+                    messagebox.showinfo("Success", "PIN changed successfully!")
+                    pin_change_window.destroy()
+
+                except pymysql.Error as e:
+                    messagebox.showerror("Database Error", f"An error occurred: {e}")
+                finally:
+                    if connection:
+                        connection.close()
+
+            
+            pin_change_window=tk.Toplevel(dashboard_window)
+            pin_change_window.title("Deposit")
+            pin_change_window.geometry("400x200")
+            pin_change_window.configure(bg='#981c4e')
+
+            tk.Label(pin_change_window, text="PIN CHANGE", font=('orbitron', 28, 'bold'), bg='#981c4e', fg='white').pack(pady=50)
+
+
+            pin_label=tk.Label(pin_change_window, text="Enter the pin to change",font=("orbitron",20),bg="#981c4e",fg="white")
+            pin_label.pack(pady=10)
+                    
+            pin_number_entry = tk.Entry(pin_change_window)
+            pin_number_entry.pack(pady=5)
+            pin_button=tk.Button(pin_change_window, text="PIN CHANGE", command=lambda:process_pin())
+            pin_button.pack(pady=10)
+            back_button=tk.Button(
+            pin_change_window,text='HOME',relief='raised',borderwidth=3,width=40,height=3,bg="#981c4e",fg="white",command=lambda: [account_window.destroy(), home(root)])
+            back_button.pack(pady=10)
+            
             
         
                     
@@ -323,10 +413,12 @@ def open_register_page():
             #tk.Label(confirmation_window, text=f"Email:{email}",font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=5)
             tk.Label(confirmation_window, text=f"Your PIN :{pin}",font=('orbitron', 12), bg='#981c4e', fg='white').pack(pady=20)
             
-            back_button = tk.Button(confirmation_window, text="Back to Home", relief='raised', borderwidth=3, width=40, height=3, command=lambda: [confirmation_window.destroy(), home(root)])
-            back_button.pack(pady=10)
+            
             login_button = tk.Button(confirmation_window, text="Login", font=("Orbitron", 18, "bold"),bg="#981c4e", fg="#ffffff", padx=20, pady=10, command=open_login_page)
             login_button.pack(pady=10)  
+
+            back_button = tk.Button(confirmation_window, text="Back to Home", relief='raised', borderwidth=3, width=40, height=3, command=lambda: [confirmation_window.destroy(), home(root)])
+            back_button.pack(pady=10)
         
                 
         register_window = tk.Toplevel(root)
